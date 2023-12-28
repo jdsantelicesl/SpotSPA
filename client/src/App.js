@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+
 import "./styles.css";
 
 import Home from "./home/Home";
@@ -8,90 +9,42 @@ import Top from "./top/Top";
 import Library from "./library/Library";
 
 export default function App() {
-    const [page, setPage] = useState("Home");
-    let logged = false;
-    let state;
-
-    const logIn = () => {
-        fetch("http://localhost:8888/userLog")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Could not fullfill server request");
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            //window.location.href = data.url;
-            logged = true;
-            return data;
-        })
-        .catch(error => {
-            console.log(error.messsage);
-        })
-    };
-
-    const getToken = async () => {
-        let result;
-        try {
-            const response = await fetch(`http://localhost:8888/getToken/${state}`, {
-                method: "GET",
-            });
-
-            if (!response.ok) {
-                throw new Error("Auth response not ok");
-            }
-
-            result = await response.json();
-        } catch (error) {
-            return ("Auth response not ok");
-        } finally {
-            let token;
-            if (result !== undefined) {
-                token = result.token;
-            }
-            else {
-                token = "";
-            }
-            return token;
-        }
-
-    };
-
-    const pageSelect = (changePage) => {
-        console.log("page changed");
-        setPage(changePage);
-    };
 
     return (
-        <div className="App">
-            <div className="hotbar">
-                <p id="head" className="hSelec" onClick={() => pageSelect("home")}>
-                    SpotMix
-                </p>
-                <div id="selec">
-                    <span className="hSelec" onClick={() => pageSelect("about")}>
-                        About
-                    </span>
-                    <span className="hSelec" onClick={() => pageSelect("search")}>
-                        Search
-                    </span>
-                    <span className="hSelec" onClick={() => pageSelect("top")}>
-                        Top
-                    </span>
-                    <span className="hSelec" onClick={() => pageSelect("library")}>
-                        Library
-                    </span>
+        <Router>
+            <div className="App">
+                <div className="hotbar">
+                    <Link className="Link" to="/">
+                        <p id="head" className="hSelec">
+                            SpotMix
+                        </p>
+                    </Link>
+                    <div id="selec">
+                        <Link className="hSelec Link" to="/about">
+                            About
+                        </Link>
+                        <Link className="hSelec Link" to="/search">
+                            Search
+                        </Link>
+                        <Link className="hSelec Link" to="/top/null">
+                            Top
+                        </Link>
+                        <Link className="hSelec Link" to="/library">
+                            Library
+                        </Link>
+                    </div>
+                </div>
+
+                <div id="content">
+                    <Routes>
+                        <Route path="/about" element={<About />} />
+                        <Route path="/search" element={<Search />} />
+                        <Route path="/top/:logged" element={<Top />} />
+                        <Route path="/library" element={<Library /> } />
+                        <Route path="/" element={<Home /> } />
+                    </Routes>
                 </div>
             </div>
-
-            <div id="content">
-                {page === "home" && <Home />}
-                {page === "about" && <About />}
-                {page === "search" && <Search />}
-                {page === "top" && <Top logIn={logIn} logged={logged} state={state} getToken={getToken} />}
-                {page === "library" && <Library logIn={logIn} logged={logged} state={state} getToken={getToken} />}
-            </div>
-        </div>
+        </Router>
     );
 }
