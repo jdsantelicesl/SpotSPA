@@ -1,7 +1,7 @@
 
 export function logIn() {
 
-    fetch("http://localhost:8888/userLog")
+    fetch("http://192.168.1.16:8888/userLog")
         .then(response => {
             console.log("url fetched");
             if (!response.ok) {
@@ -25,7 +25,7 @@ export function logIn() {
 export function getToken() {
     const state = sessionStorage.getItem('state');
 
-    fetch(`http://localhost:8888/getToken/${state}`)
+    fetch(`http://192.168.1.16:8888/getToken/${state}`)
         .then(response => {
             console.log("token fetched")
             if (!response.ok) {
@@ -35,7 +35,10 @@ export function getToken() {
         })
         .then(data => {
             console.log(data);
-            return data.token;
+            const expiry = new Date().getHours() + new Date().getMinutes()/60;
+            console.log("Token set at: ", expiry);
+            sessionStorage.setItem("expiry", expiry)
+            sessionStorage.setItem("token", data.token);
         })
         .catch(error => {
             console.log(error.message);

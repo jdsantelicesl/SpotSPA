@@ -5,8 +5,16 @@ export default function useFetch(url) {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
 
+    const token = sessionStorage.getItem("token");
+    console.log("token before pass: ", token);
+
     useEffect(() => {
-        fetch(url)
+        const head = {
+            "Authorization": "Bearer " + token
+        }
+        fetch(url, {
+            headers: head
+        })
             .then(res => {
                 if (!res.ok) { // error coming back from server
                     // throws error that will be caught by catch instead of executing .then

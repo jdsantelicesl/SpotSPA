@@ -26,7 +26,7 @@ export default function App() {
                         <Link className="hSelec Link" to="/search">
                             Search
                         </Link>
-                        <Link className="hSelec Link" to="/top/null">
+                        <Link className="hSelec Link" to="/top">
                             Top
                         </Link>
                         <Link className="hSelec Link" to="/library">
@@ -39,7 +39,7 @@ export default function App() {
                     <Routes>
                         <Route path="/about" element={<About />} />
                         <Route path="/search" element={<Search />} />
-                        <Route path="/top/:logged" element={<Top />} />
+                        <Route path="/top" element={<Top />} />
                         <Route path="/library" element={<Library /> } />
                         <Route path="/" element={<Home /> } />
                     </Routes>
