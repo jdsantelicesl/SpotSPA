@@ -86,10 +86,8 @@ def getToken():
     token_info = response.json()
 
     token = token_info["access_token"]  # Here's your access token
-    expiry = token_info["expires_in"]
     print(token)
     print("Expires in: ")
-    print(expiry)
     return state, token
 
 
