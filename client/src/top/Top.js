@@ -12,11 +12,16 @@
         const [pending, setPending] = useState(true);
         const [error, setError] = useState(null);
 
-        const [token, setToken] = useState(sessionStorage.getItem("token"));
-        const expiry = sessionStorage.getItem("expiry");
+        const unpackToken = sessionStorage.getItem("token") === "null" ? null : sessionStorage.getItem("token");
+        const [token, setToken] = useState(unpackToken);
+
+        let expiry = sessionStorage.getItem("expiry");
+        expiry = expiry === "null" ? null : expiry;
         console.log("session token: ", token);
 
-        const [state, setState] = useState(sessionStorage.getItem("state"));
+
+        const unpackState = sessionStorage.getItem("state") === "null" ? null : sessionStorage.getItem("state");
+        const [state, setState] = useState(unpackState);
 
         useEffect(() => {
             console.log("log in update");
@@ -34,12 +39,20 @@
         useEffect(() => {
             console.log(expiry);
             const current_time = new Date().getHours() + new Date().getMinutes()/60;
-            console.log(current_time);  
-            if(current_time - expiry >= 1 || current_time < expiry){
-                console.log("reset fired");
-                setState(null);
-                setToken(null);
+            console.log(current_time);
+            if(expiry){
+                if(current_time - expiry >= 1 || current_time < expiry){
+                    console.log("reset fired");
+                    setState(null);
+                    setToken(null);
+                    sessionStorage.setItem("state", null);
+                    sessionStorage.setItem("token", null);
+                    sessionStorage.setItem("expiry", null);
+                    console.log("creds set to null");
+                }
             }
+
+            console.log("token: ", token);
             
             if(token){
                 console.log("fetch fired");
