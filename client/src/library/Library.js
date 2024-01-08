@@ -53,13 +53,16 @@ export default function Library() {
     return (
         <div className="Library">
             <h1 className="headings">Library</h1>
-            <hr />
+            <hr style={{marginBottom: "5vh"}}/>
 
             {content && <div id="lib">
                 {content.items.map((playlist) => (
 
                     <div className="list">
-                        {playlist.name}
+                        <div className="images"> <img src={playlist.images[0].url} style={{width: "8vh", height: "8vh"}}/> </div> {playlist.name}
+                        <br/>
+                        <br/>
+                        <br />
                     </div>
 
                 ))}

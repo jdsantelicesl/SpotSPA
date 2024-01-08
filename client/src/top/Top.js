@@ -1,6 +1,5 @@
     import { useState, useEffect } from "react";
     import fetchData from "../fetchData.js";
-    import useFetch from "../useFetch.js";
 
     import { logIn, getToken } from "../logIn.js";
 
