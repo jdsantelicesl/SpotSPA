@@ -7,6 +7,7 @@ import About from "./about/About";
 import Search from "./search/Search";
 import Top from "./top/Top";
 import Library from "./library/Library";
+import Redirect from "./Redirect"
 
 export default function App() {
 
@@ -41,6 +42,7 @@ export default function App() {
                         <Route path="/search" element={<Search />} />
                         <Route path="/top" element={<Top />} />
                         <Route path="/library" element={<Library /> } />
+                        <Route path="/redirect" element={<Redirect />} />
                         <Route path="/" element={<Home /> } />
                     </Routes>
                 </div>
