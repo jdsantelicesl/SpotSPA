@@ -105,7 +105,12 @@ export default function Top() {
                 {content.items.map((song) => (
 
                     <div className="list">
+                        <br />
+                        <br />
+                        <div className="images"> <img src={song.album.images[0].url} style={{ width: "8vh", height: "8vh" }} /> </div>
                         {song.name}
+                        <br />
+                        <br />
                     </div>
 
                 ))}
