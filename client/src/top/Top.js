@@ -26,9 +26,9 @@ export default function Top() {
         console.log("log in update");
 
         if (!state) {
+            sessionStorage.setItem("redirect", "top");
+            console.log("redir: ", sessionStorage.getItem("redirect"));
             logIn();
-            const newState = sessionStorage.getItem("state");
-            setToken(newState);
             console.log("logging in");
         }
 
