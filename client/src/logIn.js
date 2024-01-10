@@ -25,7 +25,7 @@ export function logIn() {
 export function getToken() {
     const state = sessionStorage.getItem('state');
 
-    fetch(`http://192.168.1.16:8888/getToken/${state}`)
+    return fetch(`http://192.168.1.16:8888/getToken/${state}`)
         .then(response => {
             console.log("token fetched")
             if (!response.ok) {
@@ -36,7 +36,7 @@ export function getToken() {
         .then(data => {
             console.log(data);
             const expiry = new Date().getHours() + new Date().getMinutes()/60;
-            console.log("Token set at: ", expiry);
+            console.log("Token set at: ", expiry.toFixed(2));
             sessionStorage.setItem("expiry", expiry)
             sessionStorage.setItem("token", data.token);
         })
