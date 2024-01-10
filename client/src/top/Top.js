@@ -107,7 +107,13 @@ export default function Top() {
                     <div className="list">
                         <br />
                         <br />
-                        <div className="images"> <img src={song.album.images[0].url} style={{ width: "8vh", height: "8vh" }} /> </div>
+
+                        <div className="images"> <img src={
+                            (type === "tracks") ? song.album?.images?.[0].url : 
+                            (type === "artists") ? song.images?.[0].url :
+                            null
+                            } style={{ width: "8vh", height: "8vh" }} /> </div>
+
                         {song.name}
                         <br />
                         <br />
