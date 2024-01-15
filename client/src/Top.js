@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
-import fetchData from "../fetchData.js";
+import "./top.css";
 
-import { logIn, getToken } from "../logIn.js";
+import { useState, useEffect } from "react";
+import fetchData from "./fetchData.js";
+
+import { logIn, getToken } from "./logIn.js";
 
 export default function Top() {
     const [range, setRange] = useState("long_term");
@@ -64,6 +66,7 @@ export default function Top() {
         console.log("token: ", token);
 
         if (token) {
+            setPending(true);
             console.log("fetch fired");
             fetchData(`https://api.spotify.com/v1/me/top/${type}?time_range=${range}&limit=50&offset=0`, updateData);
         }
@@ -78,52 +81,45 @@ export default function Top() {
 
     return (
         <div className="Top">
-            <h1 className="headings">Search</h1>
-            <hr />
-            <p className="sHeading">Your Top Content:</p>
+            <p className="headings">Your Top Content</p>
 
-            <div style={{ textAlign: "center" }}>
-                <span style={{ display: "inline-block", textAlign: "left" }}>Select Filters:</span>
-                <label htmlFor="range"> Time Range: </label>
-                <select id="range" value={range} onChange={(e) => setRange(e.target.value)}>
-                    <option value="short_term">Short Term</option>
-                    <option value="medium_term">Medium Term</option>
-                    <option value="long_term" selected>Long Term</option>
-                </select>
+            <div id="args">
+                <div id="type">
+                    <div id="tracks" className={`input ${(type === "tracks") ? "clicked": ""}`} onClick={(e) => setType(e.target.id)}> Tracks </div>
+                    <div id="artists" className={`input ${(type === "artists") ? "clicked" : ""}`} onClick={(e) => setType(e.target.id)}> Artists </div>
+                </div>
 
-                <label htmlFor="type"> Type: </label>
-                <select id="type" value={type} onChange={(e) => setType(e.target.value)}>
-                    <option value="tracks" selected>Tracks</option>
-                    <option value="artists">Artists</option>
-                </select>
-                <button id="submit">Submit</button>
+                <div id="range">
+                    <div id="short_term" className={`input ${(range === "short_term") ? "clicked" : ""}`} onClick={(e) => setRange(e.target.id)}> 4 weeks </div>
+                    <div id="medium_term" className={`input ${(range === "medium_term") ? "clicked" : ""}`} onClick={(e) => setRange(e.target.id)}> 6 months </div>
+                    <div id="long_term" className={`input ${(range === "long_term") ? "clicked" : ""}`} onClick={(e) => setRange(e.target.id)}> All time </div>
+                </div>
+
             </div>
 
-            <div style={{ paddingLeft: "5vw", paddingRight: "5vw" }}><hr /></div>
+            {(content && !pending) && <div id="items">
+                {content.items.map((song, index) => (
 
-            {content && <div id="top">
-                {content.items.map((song) => (
-
-                    <div className="list">
-                        <br />
-                        <br />
-
+                    <div className="item">
+                        <div class="index">#{index+1}</div>
                         <div className="images"> <img src={
                             (type === "tracks") ? song.album?.images?.[0].url : 
                             (type === "artists") ? song.images?.[0].url :
                             null
                             } style={{ width: "8vh", height: "8vh" }} /> </div>
-
-                        {song.name}
-                        <br />
-                        <br />
+                        
+                        <div className="song">
+                            <div className="title"> {song.name} </div>
+                            <div className="spacer"></div>
+                            <div className="artist"> {song.artists?.[0].name} </div>
+                        </div>
                     </div>
 
                 ))}
             </div>}
 
-            {pending && <p> Loading... </p>}
-            {error && <p> An error ocurred, please refresh. {error} </p>}
+            {pending && <p style={{ color: "rgb(30, 215, 96)"}}> Loading... </p>}
+            {error && <p style={{ color: "rgb(30, 215, 96)" }}> An error ocurred, please refresh. {error} </p>}
 
         </div>
     );

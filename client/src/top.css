@@ -1,0 +1,113 @@
+/* arguments ui */
+
+#args {
+    color: white;
+    display: flex;
+}
+
+    #type {
+        display: flex;
+    }
+
+    #range {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .input {
+        padding-left: 2vw;
+        padding-right: 2vw;
+        padding-top: 2vh;
+        padding-bottom: 2vh; 
+        border: .4vh solid rgb(24, 24, 26);
+        border-radius: 4vh;
+    }
+
+        .input:hover {
+            background-color: rgb(24, 24, 26);
+        }
+    
+    .clicked {
+        color: rgb(30, 215, 96);
+        background-color: rgba(30, 131, 66, 0.474);
+    }
+
+    @media (max-width: 800px) {
+        #args {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #range {
+            margin-left: 0;
+        }
+
+        .input {
+            padding-left: 4vw;
+            padding-right: 4vw;
+            padding-top: 1vh;
+            padding-bottom: 1vh;
+        }
+    }
+
+
+
+/* fetched data */
+
+#items {
+    padding-left: 0vw;
+    padding-right: 0vw;
+    text-align: left;
+    color: rgb(255, 255, 255);
+}
+
+.item {
+    display: flex;
+    height: 10vh;
+    border-radius: 4vh;
+    align-items: center;
+    border: .5vh solid rgb(24, 24, 26);
+}
+
+    .item:hover {
+        background-color: rgb(24, 24, 26);
+    }
+
+    .index {
+        padding-left: 1vw;
+    }
+
+    .song {
+        padding-right: 1vw;
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+
+    .title {
+        padding-right: 10vw;
+        align-self: flex-start;
+    }
+
+    .artist {
+        font-size: calc((4vh + 1vw)/3);
+        font-weight: 100;
+        color: rgb(159, 159, 173);
+        align-self: flex-end;
+        margin-left: auto;
+    }
+
+    @media (max-width: 800px) {
+        .song {
+            flex-direction: column;
+        }
+    }
+
+.images {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    padding-right: 10vw;
+    padding-left: 2vw;
+    padding-top: 1vh;
+}

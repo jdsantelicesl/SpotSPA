@@ -2,11 +2,9 @@ import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 
 import "./styles.css";
 
-import Home from "./home/Home";
-import About from "./about/About";
-import Search from "./search/Search";
-import Top from "./top/Top";
-import Library from "./library/Library";
+import Home from "./Home";
+import About from "./About";
+import Top from "./Top";
 import Redirect from "./Redirect"
 
 export default function App() {
@@ -24,14 +22,8 @@ export default function App() {
                         <Link className="hSelec Link" to="/about">
                             About
                         </Link>
-                        <Link className="hSelec Link" to="/search">
-                            Search
-                        </Link>
                         <Link className="hSelec Link" to="/top">
                             Top
-                        </Link>
-                        <Link className="hSelec Link" to="/library">
-                            Library
                         </Link>
                     </div>
                 </div>
@@ -39,9 +31,7 @@ export default function App() {
                 <div id="content">
                     <Routes>
                         <Route path="/about" element={<About />} />
-                        <Route path="/search" element={<Search />} />
                         <Route path="/top" element={<Top />} />
-                        <Route path="/library" element={<Library /> } />
                         <Route path="/redirect" element={<Redirect />} />
                         <Route path="/" element={<Home /> } />
                     </Routes>
