@@ -7,7 +7,7 @@ export default function Home() {
         <div className="Home">
             <div id="intro">
                 <div id="introText">
-                    <div className="headings"> Your Spotify statistics, <br/> at the tip of your fingers</div>
+                    <div className="headings"> Your Spotify statistics <br/> at the tip of your fingers</div>
                     <div className="text"> Access your top artists and tracks. <br/>    See your most listened to content on different time frames.</div>
 
                     <div id="getStarted">

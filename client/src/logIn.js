@@ -1,7 +1,7 @@
 
 export function logIn() {
 
-    fetch("http://192.168.1.16:8888/userLog")
+    fetch("https://spot-mix-bd5608e94c9e.herokuapp.com/userLog")
         .then(response => {
             console.log("url fetched");
             if (!response.ok) {
@@ -25,7 +25,7 @@ export function logIn() {
 export function getToken() {
     const state = sessionStorage.getItem('state');
 
-    return fetch(`http://192.168.1.16:8888/getToken/${state}`)
+    return fetch(`https://spot-mix-bd5608e94c9e.herokuapp.com/${state}`)
         .then(response => {
             console.log("token fetched")
             if (!response.ok) {
