@@ -43,6 +43,7 @@ export default function Top() {
             })
             .catch(() =>{
                 console.log("Could not fetch token");
+                setError(true);
             });
         }
     }, [state, token]);
@@ -103,8 +104,8 @@ export default function Top() {
                     <div className="item">
                         <div class="index">#{index+1}</div>
                         <div className="images"> <img src={
-                            (type === "tracks") ? song.album?.images?.[0].url : 
-                            (type === "artists") ? song.images?.[0].url :
+                            (type === "tracks") ? song.album?.images?.[0]?.url : 
+                            (type === "artists") ? song.images?.[0]?.url :
                             null
                             } style={{ width: "8vh", height: "8vh" }} /> </div>
                         

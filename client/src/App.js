@@ -19,11 +19,8 @@ export default function App() {
                         </p>
                     </Link>
                     <div id="selec">
-                        <Link className="hSelec Link" to="/about">
-                            About
-                        </Link>
                         <Link className="hSelec Link" to="/top">
-                            Top
+                            Your Stats
                         </Link>
                     </div>
                 </div>

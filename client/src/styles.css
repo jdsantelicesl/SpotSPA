@@ -48,6 +48,7 @@ a {
         padding-right: 3vw;
         cursor: pointer;
         color: rgb(30, 215, 96);
+        font-weight: 600;
     }
 
     .hSelec:hover {
@@ -68,7 +69,7 @@ a {
         text-align: left;
         font-size: 6.5vh;
         padding-left: 5vw;
-        padding-top: 1.5vh;
+        padding-top: 2vh;
         margin: 0;
     }
 
